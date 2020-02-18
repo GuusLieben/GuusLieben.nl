@@ -1,11 +1,11 @@
 <main class="main">
   <div class="text">
-    <h1 class="text-title">Guus Lieben</h1>
+    <h1 class="text-title" (click)="toggleColor()" style="cursor: pointer">Guus Lieben</h1>
     <div class="text-content">
       <p>I'm an I-B student at the Avans University, Netherlands, Planet Earth</p>
       <blockquote>
         <p>You can contact me at <a href="mailto:guuslieben@xendox.com">guuslieben@xendox.com</a>, follow me on
-          <a href="https://twitter.com/GuusLieben_">Twitter</a>, or connect with me on <a
+          <a href="https://twitter.com/GuusLieben">Twitter</a>, or connect with me on <a
             href="https://linkedin.com/in/guus-lieben-99b3b589/">LinkedIn</a>. You can also check out my
           work over at <a href="https://github.com/GuusLieben/">GitHub</a>, or <a
             href="https://gitlab.com/guuslieben/">GitLab</a>.</p>
@@ -22,7 +22,7 @@
             <hr class="archive-post-spacer">
             <p class="archive-post-day">{{join(skill.frameworks)}}</p>
             <hr class="archive-post-spacer short">
-            <p class="archive-post-day">{{years(skill.since)}} years</p>
+            <p class="archive-post-day">{{since(skill.since)}}</p>
           </i>
         </div>
 
@@ -55,9 +55,6 @@
       <hr>
 
       <h2>Work &amp; education</h2>
-      <p>I've always been one to take action, rarely sitting down to do nothing. Ever since I was legally allowed
-        to work, my goal has been to <em>keep learning</em>, to keep developing myself and the people around me.
-      </p>
 
       <nav class="archive archive-posts">
 
@@ -92,14 +89,10 @@
 
     </div>
   </div>
-  <nav class="archive archive-posts">
 
-    <h2 class="archive-title">My portfolio</h2>
-    <div class="archive-text">
-      <p>Below you can find an up-to-date feed of my work on both <a href="https://github.com/GuusLieben/">GitHub</a>
-        and <a href="https://gitlab.com/guuslieben/">GitLab</a>.<br>This list is always kept up-to-date by a custom
-        JavaScript script.</p>
-    </div>
+  <nav class="archive archive-posts">
+    <hr>
+    <h2 class="archive-title">Public portfolio</h2>
 
     <h3 class="archive-subtitle">
       <span class="archive-year">Project</span>
@@ -118,6 +111,12 @@
           <p class="archive-post-name"><small style="font-size: 14px">{{project.description}}</small></p>
         </a>
         <br>
+      </div>
+      <hr>
+      <div class="archive-post-name">
+        <a class="archive-post-link archive-post-link-current" href="https://github.com/GuusLieben">
+          <p class="archive-post-name"><small style="font-size: 14px">.. and {{contributions}} other contributions on GitHub</small></p>
+        </a>
       </div>
 
     </div>
