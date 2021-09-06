@@ -1,125 +1,84 @@
-<main class="main">
-  <div class="text">
-    <h1 class="text-title" (click)="toggleColor()" style="cursor: pointer">Guus Lieben</h1>
-    <div class="text-content">
-      <p>I'm an I-B student at the Avans University, Netherlands, Planet Earth</p>
-      <blockquote>
-        <p>You can contact me at <a href="mailto:guuslieben@xendox.com">guuslieben@xendox.com</a>, follow me on
-          <a href="https://twitter.com/GuusLieben">Twitter</a>, or connect with me on <a
-            href="https://linkedin.com/in/guus-lieben-99b3b589/">LinkedIn</a>. You can also check out my
-          work over at <a href="https://github.com/GuusLieben/">GitHub</a>, or <a
-            href="https://gitlab.com/guuslieben/">GitLab</a>.</p>
-      </blockquote>
-      <nav class="archive archive-posts">
-        <h2>Earlier experience</h2>
-        <div *ngFor="let skillSet of skillSets">
-          <h3 class="archive-subtitle">
-            <span class="archive-year">{{skillSet.title}}</span>
-            <span class="archive-month"></span>
-          </h3>
-          <i *ngFor="let skill of skillSet.skills" class="archive-post-link archive-post-link-current">
-            <p class="archive-post-name">{{skill.language}}</p>
-            <hr class="archive-post-spacer">
-            <p class="archive-post-day">{{join(skill.frameworks)}}</p>
-            <hr class="archive-post-spacer short">
-            <p class="archive-post-day">{{since(skill.since)}}</p>
-          </i>
-        </div>
-
-        <br>
-        <hr>
-
-        <h2>Certificates</h2>
-        <h3 class="archive-subtitle">
-          <span class="archive-year">G DATA | Avans Hogeschool Hacksession</span>
-          <span class="archive-month">2019</span>
-        </h3>
-        <i class="archive-post-link archive-post-link-current">
-          <p class="archive-post-name">License 3513230715</p>
-          <hr class="archive-post-spacer">
-          <p class="archive-post-day">Awarded by G DATA Software &amp; the Avans University</p>
-        </i>
-
-        <h3 class="archive-subtitle">
-          <span class="archive-year">Cambridge First Certificate in English</span>
-          <span class="archive-month">2015</span>
-        </h3>
-        <i class="archive-post-link archive-post-link-current">
-          <p class="archive-post-name">Level B2</p>
-          <hr class="archive-post-spacer">
-          <p class="archive-post-day">Awarded by the Cambridge English Language Assessment</p>
-        </i>
-      </nav>
-
-      <br>
-      <hr>
-
-      <h2>Work &amp; education</h2>
-
-      <nav class="archive archive-posts">
-
-        <h3 class="archive-subtitle">
-          <span class="archive-year">Work</span>
-        </h3>
-
-        <i *ngFor="let job of work" class="archive-post-link archive-post-link-current">
-          <p class="archive-post-name">{{job.employer}} - {{job.title}}</p>
-          <hr class="archive-post-spacer">
-          <p class="archive-post-day">{{job.start}} - {{job.end}}</p>
-        </i>
-
-
-        <h3 class="archive-subtitle">
-          <span class="archive-year">Education</span>
-        </h3>
-
-        <i class="archive-post-link archive-post-link-current">
-          <p class="archive-post-name">Avans University of Applied Sciences</p>
-          <hr class="archive-post-spacer">
-          <p class="archive-post-day">Information Technology 2018 - 2022</p>
-        </i>
-
-        <i class="archive-post-link archive-post-link-current">
-          <p class="archive-post-name">Walburg College <em>[Graduated]</em></p>
-          <hr class="archive-post-spacer">
-          <p class="archive-post-day">HAVO/HGSE 2012-2018</p>
-        </i>
-
-      </nav>
-
-    </div>
-  </div>
-
-  <nav class="archive archive-posts">
+<div id="resume" xmlns="http://www.w3.org/1999/html">
+    <h1>Guus Lieben</h1>
+    <p class="objective">I'm a BSc Computer Science student and the Avans University of Applied Sciences, and software
+        engineer at Cost Engineering.
+        <br/>
+        You can contact me at <a href="mailto:guuslieben@xendox.com"><i class="far fa-envelope"></i>
+        guuslieben@xendox.com</a>, follow me on
+        <a href="https://twitter.com/GuusLieben"><i class="fab fa-twitter"></i> Twitter</a>, or connect with me on <a
+            href="https://linkedin.com/in/guus-lieben-99b3b589/"><i class="fab fa-linkedin"></i> LinkedIn</a>. You can
+        also check out my
+        work over at <a href="https://github.com/GuusLieben/"><i class="fab fa-github"></i> GitHub</a>, or <a
+            href="https://gitlab.com/guuslieben/"><i class="fab fa-gitlab"></i> GitLab</a>.
     <hr>
-    <h2 class="archive-title">Public portfolio</h2>
+    <dl>
+        <dt>Education
+        <dd>
+            <h2>Avans University of Applied Sciences</h2>
+            <p>
+                <strong>Major:</strong> Computer Science<br/>
+                <strong>Minor:</strong> Artificial Intelligence
+            </p>
+            <h2>Walburg College</h2>
+            <p><strong>Graduated:</strong> HAVO/HGSE</p>
+    </dl>
 
-    <h3 class="archive-subtitle">
-      <span class="archive-year">Project</span>
-      <span class="archive-month">Language</span>
-    </h3>
+    <dl>
+        <dt>Technical Skills
+        <dd>
+            <div *ngFor="let skillSet of skillSets">
+                <h2>{{skillSet.title}}</h2>
+                <ul>
+                    <li *ngFor="let skill of skillSet.skills">
+                        <b>{{skill.language}}:</b> {{join(skill.frameworks)}}
+                    </li>
+                </ul>
+            </div>
+    </dl>
 
-    <div id="github-feed">
-      <div *ngFor="let project of gitProjects" class="list-card">
-        <a [attr.href]="project.url"
-           class="archive-post-link archive-post-link-current">
-          <p class="archive-post-name"><b><i [ngClass]="project.source"></i> {{project.title}}</b></p>
-          <hr class="archive-post-spacer">
-          <p class="archive-post-day">{{project.language}}</p>
-        </a>
-        <a class="archive-post-link archive-post-link-current">
-          <p class="archive-post-name"><small style="font-size: 14px">{{project.description}}</small></p>
-        </a>
-        <br>
-      </div>
-      <hr>
-      <div class="archive-post-name">
-        <a class="archive-post-link archive-post-link-current" href="https://github.com/GuusLieben">
-          <p class="archive-post-name"><small style="font-size: 14px">.. and {{contributions}} other contributions on GitHub</small></p>
-        </a>
-      </div>
+    <dl>
+        <dt>Experience
+        <dd>
+            <div *ngFor="let job of work">
+                <h2>{{job.title}}<span>{{job.employer}} {{job.start}} - {{job.end}}</span></h2>
+                <ul *ngIf="job.short">
+                    <li *ngFor="let experience of job.short">{{experience}}
+                </ul>
+            </div>
+        </dd>
+    </dl>
 
-    </div>
+    <dl>
+        <dt>Certificates
+        <dd>
+            <div *ngFor="let cert of certificates">
+                <h2>{{cert.title}}<span>{{cert.license}}</span></h2>
+                <p>Awarded by {{cert.awardedBy}}, {{cert.awarded}}</p>
+            </div>
+    </dl>
 
-  </nav>
-</main>
+    <dl>
+        <dt>Project highlight
+        <dd>
+            <a href="https://github.com/GuusLieben/Hartshorn" target="_blank"><h2>Hartshorn<span><i
+                    class="fab fa-java"></i> Java</span></h2></a>
+            <p>Hartshorn is a platform agnostic service and dependency management framework providing advanced utilities
+                to develop against a variety of platforms.</p>
+    </dl>
+
+    <dl>
+        <dt>Public work
+        <dd>
+            <div *ngFor="let project of gitProjects">
+                <a [attr.href]="project.url" target="_blank"><h2>{{project.title}}<span><i
+                        [ngClass]="project.source"></i> {{project.language}}</span></h2></a>
+                <p>{{project.description}}</p>
+            </div>
+            <div *ngIf="gitProjects.length == 0" class="archive-post-name">
+                <a class="archive-post-link archive-post-link-current" href="https://github.com/GuusLieben">
+                    <p class="archive-post-name"><small style="font-size: 14px"><b>Hey there! You are being rate-limited
+                        by GitHub's public API, click here to view my public work on GitHub.</b></small></p>
+                </a>
+            </div>
+    </dl>
+</div>

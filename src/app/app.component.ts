@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   gitProjects: Array<GitProject> = [];
   skillSets: Array<SkillSet> = [];
   work: Array<Work> = [];
+  certificates: Array<Certificate>
   contributions: number = 0;
 
   private themes = {
@@ -70,7 +71,7 @@ export class AppComponent implements OnInit {
       skills: [
         {
           language: 'Java',
-          frameworks: ['Spring', 'Maven/Gradle', 'Swing', 'JFX'],
+          frameworks: ['Spring(Boot)', 'Maven/Gradle', 'Swing', 'JavaFX', 'Vaadin', 'Android'],
           since: 2018
         },
         {
@@ -80,12 +81,12 @@ export class AppComponent implements OnInit {
         },
         {
           language: 'C#',
-          frameworks: ['dotNet Core', 'EF/IF', 'MVC', 'Blazor'],
+          frameworks: ['.NET Core', 'Entity Framework', 'Blazor', 'Identity Framework'],
           since: 2018
         },
         {
           language: 'Python',
-          frameworks: ['PySerial (RPi)'],
+          frameworks: ['PySerial (RPi)', 'OpenCV', 'NumPy', 'TensorFlow'],
           since: 1
         }
       ]
@@ -133,22 +134,63 @@ export class AppComponent implements OnInit {
 
     this.work = [
       {
+        employer: 'Cost Engineering',
+        title: 'Software Engineer',
+        start: 'Jan. 2021',
+        end: 'Present',
+        short: [
+            'Developed a new primary web- and browser integration framework for existing SaaS solutions.'
+        ]
+      },
+      {
+        employer: 'Cost Engineering',
+        title: 'Software Engineering Intern',
+        start: 'Jul. 2020',
+        end: 'Jan. 2021',
+        short: [
+            'Performed a exhaustive research regarding the digital representation of physical and functional characteristics of 3D spaces.',
+            'Developed a proof-of-concept application showcasing the ability to connect informational models to digital cost estimations.'
+        ]
+      },
+      {
+        employer: 'Avans University',
+        title: 'Peer Mentor',
+        start: 'Feb. 2019',
+        end: 'Jun. 2021',
+        short: [
+            'Mentored first-, second-, and third year computer science students, providing support to plan and execute projects and individual assignments.'
+        ]
+      },
+      {
         employer: 'Juwelier Stoopman B.V.',
         title: 'Sales',
         start: 'Sep. 2019',
-        end: 'Present'
+        end: 'Sep. 2021',
+        short: [
+            'Provided consultations to customers regarding purchases and repairs.',
+            'Performed in-store repairs on (wrist)watches.',
+            'Served as communication point between the store and CRM software suppliers.'
+        ]
       },
       {
         employer: 'Plus Retail',
         title: 'Assistent store manager',
         start: 'Jun. 2018',
-        end: 'Sep. 2019'
+        end: 'Sep. 2019',
+        short: [
+            'Lead over seventy people across five departments, supporting several department managers.',
+            'Managed in- and outbound customer and enterprise deliveries.',
+            'Actively performed store evaluations to enhance work performance.'
+        ]
       },
       {
         employer: 'HEMA',
         title: 'Manager Bakery/Catering',
         start: 'Nov. 2016',
-        end: 'Jun. 2018'
+        end: 'Jun. 2018',
+        short: [
+            'Managed the bakery and catering departments, coordinating people across both departments.'
+        ]
       },
       {
         employer: 'Plus Retail',
@@ -157,6 +199,33 @@ export class AppComponent implements OnInit {
         end: 'Nov. 2016'
       }
     ];
+
+    this.certificates = [
+      {
+        title: "Undergraduate Computer Science",
+        awarded: "2020",
+        license: "Propaedeutic diploma",
+        awardedBy: "the Avans University, Breda"
+      },
+      {
+        title: "Cambridge First Certificate in English",
+        awarded: "2015",
+        license: "Level B2",
+        awardedBy: "the Cambridge English Language Assessment"
+      },
+      {
+        title: "G Data | Avans University Hack Session",
+        awarded: "2019",
+        license: "License 3513230715",
+        awardedBy: "G Data Software & Avans University"
+      },
+      {
+        title: "Lean IT",
+        awarded: "2020",
+        license: "Online Certificate",
+        awardedBy: "LinkedIn Learning"
+      }
+    ]
 
     // GitHub API
     this.http.get('https://api.github.com/users/GuusLieben/repos').subscribe(value => {
@@ -169,23 +238,6 @@ export class AppComponent implements OnInit {
     }, error => {
       console.error(error);
     });
-
-    this.http.get('https://gitlab.com/api/v4/users/guuslieben/projects').subscribe(value => {
-      if (Array.isArray(value)) {
-        value.forEach(repo => {
-          const project = new GitProject(repo.name, repo.web_url, repo.description, 'Unknown', 'fab fa-gitlab');
-          this.gitProjects.push(project);
-        });
-      }
-    }, error => {
-      console.error(error);
-    });
-
-    for (let i=0; i<10; i++) {
-      this.http.get(`https://api.github.com/users/GuusLieben/events?page=${i}`).subscribe(value => {
-        if (Array.isArray(value)) this.contributions += value.length;
-      });
-    }
   }
 
   join(arr: string[]): string {
@@ -225,9 +277,25 @@ class SkillSet {
   }
 }
 
+class Certificate {
+
+  title: string;
+  awarded: string;
+  license: string;
+  awardedBy: string;
+
+  constructor(title: string, awarded: string, license: string, awardedBy: string) {
+    this.title = title;
+    this.awarded = awarded;
+    this.license = license;
+    this.awardedBy = awardedBy;
+  }
+}
+
 class Skill {
 
   language: string;
+
   frameworks: string[] = [];
   since: number;
 
@@ -261,6 +329,7 @@ class Work {
   title: string;
   start: string;
   end: string;
+  short?: string[];
 
   constructor(employer: string, title: string, start: string, end: string) {
     this.employer = employer;
