@@ -51,7 +51,7 @@ a:hover {
 }
 
 a::after {
-  content: "↗";
+  content: "\2197";
   display: inline;
   vertical-align: top;
   font-size: 0.8em;
@@ -65,7 +65,7 @@ a::after {
 ion-icon {
   position: relative;
   top: calc(1em / 5);
-  left: calc(1em / 10);
+  left: calc(-1em / 10);
 }
 
 dfn {
