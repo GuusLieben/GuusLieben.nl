@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 240 5.9% 10%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 240 5.9% 10%;
+  --radius: 0.25rem;
+}
+
+body, html {
+  overflow-x: hidden;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.definition {
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  color: hsl(var(--primary));
+  text-decoration: none;
+  transition: color 250ms, border-bottom-color 250ms;
+}
+
+a:hover {
+  color: hsl(var(--secondary-foreground));
+  border-bottom-color: hsl(var(--primary-foreground));
+}
+
+a::after {
+  content: "↗";
+  display: inline;
+  vertical-align: top;
+  font-size: 0.8em;
+  color: hsl(var(--muted-foreground));
+}
+
+.text-muted-foreground {
+  color: hsl(var(--muted-foreground));
+}
+
+ion-icon {
+  position: relative;
+  top: calc(1em / 5);
+  left: calc(1em / 10);
+}
+
+dfn {
+  border-bottom: dashed 1px rgba(0, 0, 0, 0.8);
+  cursor: help;
+  font-style: normal;
+  position: relative;
+
+}
+
+dfn::after {
+  content: attr(data-info);
+  display: inline;
+  position: absolute;
+  top: 22px;
+  left: 0;
+  opacity: 0;
+  font-size: 15px;
+  line-height: 1.5em;
+  padding: 0.5em 0.8em;
+  background-color: hsl(var(--popover));
+  pointer-events: none; /* This prevents the box from appearing when hovered. */
+  transition: opacity 250ms, top 250ms;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+  color: hsl(var(--muted-foreground));
+  border: 1px solid #eee;
+  width: 50vw;
+  max-width: 512px;
+}
+
+dfn::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 1em;
+  left: .5em;
+  opacity: 0;
+  width: 0;
+  height: .65em;
+  border: solid transparent 5px;
+  border-bottom-color: rgba(0, 0, 0, 0.8);
+  transition: opacity 250ms, top 250ms;
+}
+
+dfn:hover {
+  z-index: 2;
+}
+
+/* Keeps the info boxes on top of other elements */
+dfn:hover::after,
+dfn:hover::before {
+  opacity: 1;
+}
+
+dfn:hover::after {
+  top: 2em;
+}
+
+dfn:hover::before {
+  top: 1.25em;
+}
+
+.text-copyright {
+  font-size: 0.8em;
+  color: hsl(var(--muted-foreground));
+}
