@@ -62,10 +62,9 @@ a::after {
   color: hsl(var(--muted-foreground));
 }
 
-ion-icon {
-  position: relative;
-  top: calc(1em / 5);
-  left: calc(-1em / 10);
+.list-index {
+  color: hsl(var(--muted-foreground));
+  padding-left: 0.5em;
 }
 
 dfn {
