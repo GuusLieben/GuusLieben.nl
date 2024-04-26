@@ -27,6 +27,7 @@
 
 body, html {
   overflow-x: hidden;
+  color: hsl(var(--foreground));
 }
 
 .title {
@@ -68,11 +69,16 @@ a::after {
 }
 
 dfn {
-  border-bottom: dashed 1px rgba(0, 0, 0, 0.8);
+  text-justify: unset;
+  /*border-bottom: dashed 1px rgba(0, 0, 0, 0.8);*/
   cursor: help;
   font-style: normal;
   position: relative;
-
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: rgba(0, 0, 0, 0.8);
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.2em;
 }
 
 dfn::after {
@@ -80,19 +86,20 @@ dfn::after {
   display: inline;
   position: absolute;
   top: 22px;
-  left: 0;
   opacity: 0;
-  font-size: 15px;
+  font-size: .85em;
   line-height: 1.5em;
   padding: 0.5em 0.8em;
   background-color: hsl(var(--popover));
   pointer-events: none; /* This prevents the box from appearing when hovered. */
   transition: opacity 250ms, top 250ms;
-  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3),
+              0 0 1px 1px rgba(0, 0, 0, 0.05);
   color: hsl(var(--muted-foreground));
-  border: 1px solid #eee;
-  width: 50vw;
+  width: max-content;
   max-width: 512px;
+  text-align: start;
+  border-radius: .25em;
 }
 
 dfn::before {
@@ -100,13 +107,19 @@ dfn::before {
   display: block;
   position: absolute;
   top: 1em;
-  left: .5em;
   opacity: 0;
   width: 0;
   height: .65em;
   border: solid transparent 5px;
-  border-bottom-color: rgba(0, 0, 0, 0.8);
+  border-bottom-color: hsl(var(--popover));
   transition: opacity 250ms, top 250ms;
+  z-index: 50;
+}
+
+dfn::after,
+dfn::before {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 dfn:hover {
@@ -120,7 +133,7 @@ dfn:hover::before {
 }
 
 dfn:hover::after {
-  top: 2em;
+  top: 2.25em;
 }
 
 dfn:hover::before {
